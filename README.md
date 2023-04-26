@@ -45,4 +45,8 @@ Thanks for the Magick.NET.Core, Magick.NET-Q16-AnyCPU, Microsoft.Web.WebView2, S
 ![1](https://user-images.githubusercontent.com/96554893/234685395-e3ddf51a-423c-4441-ba9f-952e6e2b56f6.png)
 ![2](https://user-images.githubusercontent.com/96554893/234685412-ab904fb6-a01b-465d-a3fd-80b5afa9930a.png)
 ![3](https://user-images.githubusercontent.com/96554893/234685421-d2d10553-0019-4cc9-98f2-2f64ffce1577.png)
+## Bugs
+When the SVG file is opened and loaded, if the beginning declaration of the SVG file is different from the beginning declaration written by the program using XMLWriter, the editor will load the SVG onto the drawing board with an error, but the SVG code will be displayed normally.
+
+When using the scroll wheel in the drawing window, although the drawing window scales with the scroll wheel, the scaling is now only at the top left corner and the scaling does not expand the drawing area of the canvas, but only visually zooms in and out.
 
