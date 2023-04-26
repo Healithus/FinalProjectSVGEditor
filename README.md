@@ -53,7 +53,11 @@ When using the scroll wheel in the drawing window, although the drawing window s
 Desired additional features
 
 Ability to display 2D floor plans in 3D
+
 Fix existing bugs
+
 Extend the canvas of SVG infinitely with zoom
+
 Can use more different and complex graphics to draw
+
 Continue...
