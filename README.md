@@ -41,3 +41,8 @@ The fourth main menu is Tools, under which various tools are available. At the m
 The editor has a built-in Webview2 control that allows you to quickly view SVG files in the browser even if you don't have a browser installed, improving your productivity.
 ## Library Use
 Thanks for the Magick.NET.Core, Magick.NET-Q16-AnyCPU, Microsoft.Web.WebView2, SkiaSharp, SkiaSharp.Svg, Spire.PDF and Svg to provide a lots of methods to help this editor complete. Those libraries make the convert easily and quickly. And also the C# library like XmlWriter makes SVG file more easily to use. Thank you.
+##ScreenShots
+![1](https://user-images.githubusercontent.com/96554893/234685395-e3ddf51a-423c-4441-ba9f-952e6e2b56f6.png)
+![2](https://user-images.githubusercontent.com/96554893/234685412-ab904fb6-a01b-465d-a3fd-80b5afa9930a.png)
+![3](https://user-images.githubusercontent.com/96554893/234685421-d2d10553-0019-4cc9-98f2-2f64ffce1577.png)
+
