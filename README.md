@@ -49,4 +49,11 @@ Thanks for the Magick.NET.Core, Magick.NET-Q16-AnyCPU, Microsoft.Web.WebView2, S
 When the SVG file is opened and loaded, if the beginning declaration of the SVG file is different from the beginning declaration written by the program using XMLWriter, the editor will load the SVG onto the drawing board with an error, but the SVG code will be displayed normally.
 
 When using the scroll wheel in the drawing window, although the drawing window scales with the scroll wheel, the scaling is now only at the top left corner and the scaling does not expand the drawing area of the canvas, but only visually zooms in and out.
+## TO DO
+Desired additional features
 
+Ability to display 2D floor plans in 3D
+Fix existing bugs
+Extend the canvas of SVG infinitely with zoom
+Can use more different and complex graphics to draw
+Continue...
