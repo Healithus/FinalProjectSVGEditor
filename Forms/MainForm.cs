@@ -1103,7 +1103,7 @@ namespace FinalProjectSVGEditor
 
         private void deleteLastShapeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Shapes.Count > 1)
+            if (Shapes.Count > 0)
             {
                 Undo.Add(Shapes[Shapes.Count - 1]);
                 Shapes.RemoveAt(Shapes.Count - 1);
