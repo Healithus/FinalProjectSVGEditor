@@ -573,15 +573,17 @@ namespace FinalProjectSVGEditor
 
         private void deleteShapeIntoSvgFile()
         {
-            string filePath = "./SVGTempOutput.svg";
-            string svgContent = File.ReadAllText(filePath);
-            var svgDoc = SvgDocument.FromSvg<SvgDocument>(svgContent);
-            var lastElement = svgDoc.Children.LastOrDefault();
-            if (lastElement != null && lastElement is SvgVisualElement)
+            var filePath = "./SVGTempOutput.svg";
+            var xmlDoc = new XmlDocument();
+            var nsmgr = new XmlNamespaceManager(xmlDoc.NameTable);
+            xmlDoc.Load(filePath);
+            var lastPath = xmlDoc.SelectSingleNode("(//*[local-name()='svg']//*[local-name()='circle' or local-name()='ellipse' or local-name()='rect' or local-name()='line'])[last()]", nsmgr);
+            nsmgr.AddNamespace("svg", "http://www.w3.org/2000/svg");
+            if (lastPath != null)
             {
-                svgDoc.Children.Remove(lastElement);
+                lastPath.ParentNode.RemoveChild(lastPath);
             }
-            svgDoc.Write(filePath);
+            xmlDoc.Save(filePath);
             FileSystemWatcher watcher = new FileSystemWatcher();
             watcher.Path = Path.GetDirectoryName("./SVGTempOutput.svg");
             watcher.Filter = Path.GetFileName("./SVGTempOutput.svg");
@@ -1109,25 +1111,6 @@ namespace FinalProjectSVGEditor
                 deleteShapeIntoSvgFile();
                 undoToolStripMenuItem.Enabled = true;
             }
-            else if (Shapes.Count == 1)
-            {
-                File.WriteAllText("./SVGTempOutput.svg", string.Empty);
-                Undo.Add(Shapes[Shapes.Count - 1]);
-                Shapes.RemoveAt(Shapes.Count - 1);
-                pictureBoxDrawingArea.Invalidate();
-                FileSystemWatcher watcher = new FileSystemWatcher();
-                watcher.Path = Path.GetDirectoryName("./SVGTempOutput.svg");
-                watcher.Filter = Path.GetFileName("./SVGTempOutput.svg");
-                watcher.Changed += (sender, e) =>
-                {
-                };
-                watcher.EnableRaisingEvents = true;
-                using (StreamReader sr = new StreamReader("./SVGTempOutput.svg"))
-                {
-                    string text = sr.ReadToEnd();
-                    svgCodeViewForm.richTextBox1.Text = text;
-                }
-            }
         }
 
         private void svgFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1158,6 +1141,8 @@ namespace FinalProjectSVGEditor
                 var height = (int)svgDocument.Height.Value;
                 var bitmap = svgDocument.Draw(width, height);
                 bitmap.Save(saveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
+                log = $"[{DateTime.Now.ToString("HH:mm:ss")}] Exported {Path.GetFileName(saveFileDialog.FileName)} As PNG File Successfully! ";
+                logrichTextBox.AppendText(log + "\n");
             }
         }
 
@@ -1172,6 +1157,8 @@ namespace FinalProjectSVGEditor
                 PdfDocument doc = new PdfDocument();
                 doc.LoadFromSvg("./SVGTempOutput.svg");
                 doc.SaveToFile(saveFileDialog.FileName);
+                log = $"[{DateTime.Now.ToString("HH:mm:ss")}] Exported {Path.GetFileName(saveFileDialog.FileName)} As PDF File Successfully! ";
+                logrichTextBox.AppendText(log + "\n");
             }
         }
 
@@ -1179,17 +1166,20 @@ namespace FinalProjectSVGEditor
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Title = "Export To JPEG File";
-            saveFileDialog.Filter = "JPEG File|*.jpg";
+            saveFileDialog.Filter = "JPEG File|*.jpeg";
             saveFileDialog.InitialDirectory = Application.StartupPath;
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                var svgData = File.ReadAllBytes("./SVGTempOutput.svg");
-                var svgImage = new MagickImage(svgData);
-                var jpegFormat = MagickFormat.Jpeg;
-                var jpegQuality = 100;
-                svgImage.Format = jpegFormat;
-                svgImage.Quality = jpegQuality;
-                svgImage.Write(saveFileDialog.FileName);
+                var svgContent = File.ReadAllText("./SVGTempOutput.svg");
+                SvgDocument svgDocument = SvgDocument.FromSvg<SvgDocument>(svgContent);
+                Image svgImage = svgDocument.Draw();
+                var jpegPath = saveFileDialog.FileName;
+                using (var stream = new FileStream(jpegPath, FileMode.Create))
+                {
+                    svgImage.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                }
+                log = $"[{DateTime.Now.ToString("HH:mm:ss")}] Exported {Path.GetFileName(saveFileDialog.FileName)} As JPG File Successfully! ";
+                logrichTextBox.AppendText(log + "\n");
             }
         }
 

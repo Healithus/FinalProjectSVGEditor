@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SVGCodeViewForm));
             richTextBox1 = new RichTextBox();
             SuspendLayout();
             // 
@@ -49,6 +50,7 @@
             ClientSize = new Size(484, 681);
             ControlBox = false;
             Controls.Add(richTextBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "SVGCodeViewForm";

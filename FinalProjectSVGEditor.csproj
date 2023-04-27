@@ -7,7 +7,24 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <Platforms>AnyCPU;x64</Platforms>
+    <ApplicationIcon>5b4b1b44fc59108928cd130e935041a5.ico</ApplicationIcon>
+    <Authors>Healithus</Authors>
+    <Company>Healithus</Company>
+    <Description>A Simple SVG Editor Made By Healithus</Description>
+    <Copyright>2023.4.26</Copyright>
+    <PackageIcon>unnamed.jpg</PackageIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="5b4b1b44fc59108928cd130e935041a5.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\..\测试工具箱\ICO\unnamed.jpg">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="13.1.0" />
