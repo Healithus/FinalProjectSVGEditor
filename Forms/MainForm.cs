@@ -238,7 +238,7 @@ namespace FinalProjectSVGEditor
                     watcher.EnableRaisingEvents = true;
                     using (StreamReader sr = new StreamReader("./SVGTempOutput.svg"))
                     {
-                        string text = sr.ReadToEnd();
+                        var text = sr.ReadToEnd();
                         svgCodeViewForm.richTextBox1.Text = text;
                     }
                 }
@@ -593,7 +593,7 @@ namespace FinalProjectSVGEditor
             watcher.EnableRaisingEvents = true;
             using (StreamReader sr = new StreamReader("./SVGTempOutput.svg"))
             {
-                string text = sr.ReadToEnd();
+                var text = sr.ReadToEnd();
                 svgCodeViewForm.richTextBox1.Text = text;
             }
         }
@@ -929,8 +929,8 @@ namespace FinalProjectSVGEditor
                 log = $"[{DateTime.Now.ToString("HH:mm:ss")}] Opened SVG file: {Path.GetFileName(openSvgFilePath)}";
                 logrichTextBox.AppendText(log + "\n");
                 labelWorkingOn.Text = $"Working On: {Path.GetFileName(openSvgFilePath)}";
-                string svgContent = File.ReadAllText(openSvgFilePath);
-                string newFilePath = "./SVGTempOutput.svg";
+                var svgContent = File.ReadAllText(openSvgFilePath);
+                var newFilePath = "./SVGTempOutput.svg";
                 File.WriteAllText(newFilePath, svgContent);
                 FileSystemWatcher watcher = new FileSystemWatcher();
                 watcher.Path = Path.GetDirectoryName("./SVGTempOutput.svg");
@@ -941,7 +941,7 @@ namespace FinalProjectSVGEditor
                 watcher.EnableRaisingEvents = true;
                 using (StreamReader sr = new StreamReader("./SVGTempOutput.svg"))
                 {
-                    string text = sr.ReadToEnd();
+                    var text = sr.ReadToEnd();
                     svgCodeViewForm.richTextBox1.Text = text;
                 }
                 XmlDocument doc = new XmlDocument();
@@ -1096,7 +1096,7 @@ namespace FinalProjectSVGEditor
             watcher.EnableRaisingEvents = true;
             using (StreamReader sr = new StreamReader("./SVGTempOutput.svg"))
             {
-                string text = sr.ReadToEnd();
+                var text = sr.ReadToEnd();
                 svgCodeViewForm.richTextBox1.Text = text;
             }
         }
@@ -1213,7 +1213,7 @@ namespace FinalProjectSVGEditor
                 watcher.EnableRaisingEvents = true;
                 using (StreamReader sr = new StreamReader("./SVGTempOutput.svg"))
                 {
-                    string text = sr.ReadToEnd();
+                    var text = sr.ReadToEnd();
                     svgCodeViewForm.richTextBox1.Text = text;
                 }
                 labelWorkingOn.Text = "Working On: UnSaved File";
@@ -1234,7 +1234,7 @@ namespace FinalProjectSVGEditor
                     watcher.EnableRaisingEvents = true;
                     using (StreamReader sr = new StreamReader("./SVGTempOutput.svg"))
                     {
-                        string text = sr.ReadToEnd();
+                        var text = sr.ReadToEnd();
                         svgCodeViewForm.richTextBox1.Text = text;
                     }
                     labelWorkingOn.Text = "Working On: UnSaved File";
